@@ -1,27 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 
 const Signin = () => {
+    const [errorMessage, setErrorMessage] = useState('');
+
     const handleRegister = e => {
         e.preventDefault();
         const form = e.target;
         console.log(e.target);
         const email = form.email.value;
         const password = form.password.value;
-        const phone = form.phone.value;
+        
         const userData = {
             email: email,
             password: password,
-            phone: phone
+            
         };
-        axios.post('https://yourapiendpoint.com/register', userData)
+        console.log(email,password);
+        axios.post('http://localhost:5000/api/login', userData)
             .then(response => {
-                console.log('Registration successful:', response.data);
+                console.log('Login successful:', response.data);
+                setErrorMessage(''); // Clear any previous error messages
             })
             .catch(error => {
-                console.error('There was an error registering!', error);
+                console.error('There was an error!', error);
+                if (error.response && error.response.status === 500) {
+                    setErrorMessage('Login failed: ' + error.response.data.message);
+                } else {
+                    setErrorMessage('There was an error!');
+                }
             });
-        // password validation: 
+        
     };
 
     return (
@@ -30,6 +39,7 @@ const Signin = () => {
                 <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
                     <h1 className="ml-8 mt-4 text-5xl font-bold">Login</h1>
                     <form onSubmit={handleRegister} className="card-body">
+                        {errorMessage && <div className="alert alert-error">{errorMessage}</div>}
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Email</span>
