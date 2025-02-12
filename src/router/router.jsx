@@ -3,6 +3,9 @@ import MainLayout from "../layout/MainLayout";
 import Home from "../pages/Home/Home";
 import Register from "../pages/Register/Register";
 import Signin from "../pages/Singin/Signin";
+import MainLayoutLogin from "../layout/MainLayoutLogin";
+import CrimePostForm from "../components/CrimePostForm";
+import Analytics from "../components/Analytics";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -20,6 +23,25 @@ const router = createBrowserRouter([
         path: "/login",
         element: <Signin></Signin>,
       },
+      {
+        path: "/postcrimereport",
+        element: <CrimePostForm></CrimePostForm>
+      },
+      {
+        path: "/analytics",
+        element: <Analytics></Analytics>
+      },
+    ],
+  },
+  {
+    path: "/successlogin",
+    element: <MainLayoutLogin></MainLayoutLogin>,
+    children: [
+      {
+        path: "/successlogin",
+        element: <Home></Home>,
+      },
+      
     ],
   },
 ]);

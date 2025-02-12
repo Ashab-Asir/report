@@ -1,6 +1,6 @@
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
-const Navbar = () => {
+const LoginNavbar = () => {
   return (
     <div className="navbar bg-base-100">
       <div className="navbar-start">
@@ -29,7 +29,7 @@ const Navbar = () => {
               <a>Home</a>
             </li>
             <li>
-              <Link to='/postcrimereport'>Post Crime Report</Link>
+              <a>Post Crime Report</a>
             </li>
             <li>
               <a>See Analytics</a>
@@ -41,23 +41,20 @@ const Navbar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li>
-            <Link to='/'>Home</Link>
+            <a>Home</a>
           </li>
           <li>
-          <Link to='/postcrimereport'>Post Crime Report</Link>
+            <Link to='/postcrimereport' >Post Crime Report</Link>
           </li>
           <li>
-            <Link to='/analytics'>See Analytics</Link>
+          <Link to='/analytics' >Post Crime Report</Link>
           </li>
         </ul>
       </div>
       <div className="navbar-end">
-        <Link to="/register">Register</Link>
-        <Link className="btn" to="/login">
-          Login
-        </Link>
+        <Link to="/">Signout</Link>
       </div>
     </div>
   );
 };
-export default Navbar;
+export default LoginNavbar;
